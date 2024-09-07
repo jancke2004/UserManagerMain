@@ -5,12 +5,13 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManager", "UserManager\UserManager.csproj", "{71BA7D68-8640-4159-97D2-519E0DAA26F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManager.Logic", "UserManager.Logic\UserManager.Logic.csproj", "{FF86829F-7E06-4760-8A17-523F593C5A0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManager.Logic", "UserManager.Logic\UserManager.Logic.csproj", "{FF86829F-7E06-4760-8A17-523F593C5A0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManager.Repository", "UserManager.Repository\UserManager.Repository.csproj", "{8667D490-00D5-4851-8217-425211EF619B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManager.Repository", "UserManager.Repository\UserManager.Repository.csproj", "{8667D490-00D5-4851-8217-425211EF619B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5D6A08BF-0FB3-4A1A-93F9-80537138019F}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject

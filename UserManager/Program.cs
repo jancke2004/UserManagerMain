@@ -6,7 +6,7 @@ using UserManager.Model;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add UserContext to the DI container
-builder.Services.AddDbContext<UserContext>( x  =>x.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
+builder.Services.AddDbContext<UserContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
 
 // Add services to the container.
 builder.Services.AddControllers();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using UserManager.Repository.Models;
 
 namespace UserManager.Model
 {
@@ -6,7 +7,7 @@ namespace UserManager.Model
     {
         public UserContext(DbContextOptions options) : base(options)
         {
-            
+
         }
         public DbSet<Users> Users { get; set; }
     }
