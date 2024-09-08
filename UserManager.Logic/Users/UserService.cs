@@ -23,6 +23,26 @@ namespace UserManager.Logic.Users
            userRepository.AddUser(users);
         }
 
+        public string DeleteUser(UserManager.Repository.Models.Users users)
+        {
+            userRepository.DeleteUser(users);
+            return "User deleted";
+        }
+
+        public UserManager.Repository.Models.Users GetUser(int id)
+        {
+            userRepository.GetUser(id);
+            return userRepository.GetUser(id);
+            
+        }
+
+        public List<UserManager.Repository.Models.Users> GetUsers()
+        {
+            userRepository.GetUsers();
+            return userRepository.GetUsers();
+            
+        }
+
         public string UpdateUser(UserManager.Repository.Models.Users users)
         {
             userRepository.UpdateUser(users);

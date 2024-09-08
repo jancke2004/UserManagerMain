@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UserManager.Logic.Interfaces;
+using UserManager.Repository.Models;
+using UserManager.Repository.Users;
 
 
 namespace UserManager.Controllers
@@ -15,18 +17,21 @@ namespace UserManager.Controllers
             this.userService = userService;
         }
 
-        //[HttpGet]
-        //[Route("GetUsers")]
-        //public List<Users> GetUsers()
-        //{
-        //    return userContext.Users.ToList();
-        //}
-        //[HttpGet]
-        //[Route("GetUser")]
-        //public Users GetUser(int id)
-        //{
-        //    return (Users)userContext.Users.Where(x => x.Id == id).FirstOrDefault();
-        //}
+        [HttpGet]
+        [Route("GetUsers")]
+        public List<UserManager.Repository.Models.Users> GetUsers()
+        {
+            userService.GetUsers();
+            return userService.GetUsers();
+
+        }
+        [HttpGet]
+        [Route("GetUser")]
+        public UserManager.Repository.Models.Users GetUser(int id)
+        {
+            userService.GetUser(id);
+            return userService.GetUser(id);
+        }
 
         [HttpPost]
         [Route("AddUser")]
@@ -43,14 +48,13 @@ namespace UserManager.Controllers
             userService.UpdateUser(users);
            return "User Updated";      
         }
-        //[HttpDelete]
-        //[Route("DeleteUser")]
-        //public string DeleteUser(Users user) 
-        //{
-        //    userContext.Users.Remove(user);
-        //    userContext.SaveChanges();
-        //    return "User deleted";
-        //}
+        [HttpDelete]
+        [Route("DeleteUser")]
+        public string DeleteUser(UserManager.Repository.Models.Users users)
+        {
+            userService.DeleteUser(users);
+            return "User deleted";
+        }
 
     }
 }
