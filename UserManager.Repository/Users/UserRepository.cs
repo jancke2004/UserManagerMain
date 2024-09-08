@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserManager.Repository.Interfaces;
 using UserManager.Repository.Models;
-using UserManager.Repository.UserContext;
 
 
 namespace UserManager.Repository.Users
@@ -20,33 +20,33 @@ namespace UserManager.Repository.Users
             this.userContext = userContext;
         }
 
-        public Task AddUser(UserManager.Repository.Models.Users users)
+        public void AddUser(UserManager.Repository.Models.Users users)
         {
-            string response = string.empty;
-            usercontext.users.add(users);
-            usercontext.savechanges();
+            string response = string.Empty;
+             userContext.Users.Add(users);
+             userContext.SaveChanges();
 
         }
-        public List<Users> GetUsers()
+        public List<UserManager.Repository.Models.Users> GetUsers()
         {
             return userContext.Users.ToList();
         }
 
-        public Task<UserManager.Repository.Models.Users> GetUser(int id)
+        public UserManager.Repository.Models.Users? GetUser(int id)
         {
-            return (UserManager.Repository.Models.Users)userContext.Users.Where(x => x.Id == id).FirstOrDefault();
+            return (UserManager.Repository.Models.Users?)userContext.Users.Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public string UpdateUser(Users user)
+        public string UpdateUser(UserManager.Repository.Models.Users users)
         {
-            userContext.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            userContext.Entry(users).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             userContext.SaveChanges();
             return "User Updated";
         }
 
-        public string DeleteUser(Users user)
+        public string DeleteUser(UserManager.Repository.Models.Users users)
         {
-            userContext.Users.Remove(user);
+            userContext.Users.Remove(users);
             userContext.SaveChanges();
             return "User deleted";
         }

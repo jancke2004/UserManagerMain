@@ -8,6 +8,6 @@ namespace UserManager.Logic.Interfaces
 {
     public interface IUserService
     {
-        Task AddUser();
+        void AddUser(UserManager.Repository.Models.Users users);
     }
 }

@@ -1,7 +1,10 @@
 
 using Microsoft.EntityFrameworkCore;
-
-using UserManager.Model;
+using UserManager.Logic.Interfaces;
+using UserManager.Logic.Users;
+using UserManager.Repository.Interfaces;
+using UserManager.Repository.Models;
+using UserManager.Repository.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +15,8 @@ builder.Services.AddDbContext<UserContext>(x => x.UseSqlServer(builder.Configura
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService,UserService>();
 
 
 var app = builder.Build();

@@ -22,4 +22,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\UserManager.Logic\UserManager.Logic.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Model\" />
+	</ItemGroup>
 </Project>

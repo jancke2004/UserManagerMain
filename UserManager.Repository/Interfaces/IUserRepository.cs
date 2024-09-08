@@ -12,7 +12,7 @@ namespace UserManager.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        Task AddUser(UserManager.Repository.Models.Users users);
-        Task<UserManager.Repository.Models.Users> GetUser(int id);
+        void AddUser(UserManager.Repository.Models.Users users);
+        UserManager.Repository.Models.Users GetUser(int id);
     }
 }
