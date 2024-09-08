@@ -36,14 +36,13 @@ namespace UserManager.Controllers
             return "User added Successfully";
 
         }
-        //[HttpPut]
-        //[Route("UpdateUser")]
-        //public string UpdateUser(Users user)
-        //{
-        //    userContext.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-        //    userContext.SaveChanges();
-        //    return "User Updated";      
-        //}
+        [HttpPut]
+        [Route("UpdateUser")]
+        public string UpdateUser(UserManager.Repository.Models.Users users)
+        {
+            userService.UpdateUser(users);
+           return "User Updated";      
+        }
         //[HttpDelete]
         //[Route("DeleteUser")]
         //public string DeleteUser(Users user) 

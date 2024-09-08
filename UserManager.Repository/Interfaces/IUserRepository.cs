@@ -12,7 +12,11 @@ namespace UserManager.Repository.Interfaces
 {
     public interface IUserRepository
     {
+        public List<UserManager.Repository.Models.Users> GetUsers();
         void AddUser(UserManager.Repository.Models.Users users);
         UserManager.Repository.Models.Users GetUser(int id);
+
+        public string UpdateUser(UserManager.Repository.Models.Users users);
+        public string DeleteUser(UserManager.Repository.Models.Users users);
     }
 }

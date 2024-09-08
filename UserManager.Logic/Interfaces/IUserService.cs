@@ -9,5 +9,6 @@ namespace UserManager.Logic.Interfaces
     public interface IUserService
     {
         void AddUser(UserManager.Repository.Models.Users users);
+        string UpdateUser(UserManager.Repository.Models.Users users);
     }
 }

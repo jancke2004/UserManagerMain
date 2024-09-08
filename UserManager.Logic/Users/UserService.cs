@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UserManager.Logic.Interfaces;
 using UserManager.Repository.Interfaces;
+using UserManager.Repository.Models;
 using UserManager.Repository.Users;
 
 
@@ -22,8 +23,12 @@ namespace UserManager.Logic.Users
            userRepository.AddUser(users);
         }
 
-      
+        public string UpdateUser(UserManager.Repository.Models.Users users)
+        {
+            userRepository.UpdateUser(users);
+            return "Updated Successfuly";
+        }
 
-       
+
     }
 }
