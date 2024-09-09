@@ -35,6 +35,23 @@ namespace UserManager.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    // properties for Date_Created and Date_Updated
+                    b.Property<DateTime>("Date_Created")
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()"); // Automatically populate Date_Created
+
+                    b.Property<DateTime>("Date_Updated")
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()") // Automatically populate Date_Updated on creation
+                        .ValueGeneratedOnAddOrUpdate(); // Ensures value is updated on modification
+
+                    // audit logging properties
+                    b.Property<string>("Added_By")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Updated_By")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
