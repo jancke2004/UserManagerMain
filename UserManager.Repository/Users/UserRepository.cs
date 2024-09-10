@@ -22,6 +22,8 @@ namespace UserManager.Repository.Users
 
         public void AddUser(UserManager.Repository.Models.Users users)
         {
+            users.Date_Created = DateTime.Now;
+            //users.Added_By = currentUser;
             string response = string.Empty;
              userContext.Users.Add(users);
              userContext.SaveChanges();
@@ -39,6 +41,8 @@ namespace UserManager.Repository.Users
 
         public string UpdateUser(UserManager.Repository.Models.Users users)
         {
+            users.Date_Updated = DateTime.Now;
+            //users.Updated_By = currentUser;
             userContext.Entry(users).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             userContext.SaveChanges();
             return "User Updated";
@@ -50,7 +54,6 @@ namespace UserManager.Repository.Users
             userContext.SaveChanges();
             return "User deleted";
         }
-
 
 
     }

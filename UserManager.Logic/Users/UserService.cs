@@ -21,6 +21,7 @@ namespace UserManager.Logic.Users
         public void AddUser(UserManager.Repository.Models.Users users)
         {
            userRepository.AddUser(users);
+          
         }
 
         public string DeleteUser(UserManager.Repository.Models.Users users)
