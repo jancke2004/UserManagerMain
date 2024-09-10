@@ -37,10 +37,9 @@ namespace UserManager.Logic.Users
             
         }
 
-        public List<UserManager.Repository.Models.Users> GetUsers()
+        public List<UserManager.Repository.Models.Users> GetUsers(int pageNumber, int pageSize)
         {
-            userRepository.GetUsers();
-            return userRepository.GetUsers();
+           return userRepository.GetUsers(pageNumber, pageSize);
             
         }
 

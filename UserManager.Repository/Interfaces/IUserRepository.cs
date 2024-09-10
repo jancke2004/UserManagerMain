@@ -12,7 +12,7 @@ namespace UserManager.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        public List<UserManager.Repository.Models.Users> GetUsers();
+        public List<UserManager.Repository.Models.Users> GetUsers(int pageNumber, int pageSize);
         void AddUser(UserManager.Repository.Models.Users users);
         public UserManager.Repository.Models.Users GetUser(int id);
 

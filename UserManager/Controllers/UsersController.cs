@@ -19,12 +19,12 @@ namespace UserManager.Controllers
 
         [HttpGet]
         [Route("GetUsers")]
-        public List<UserManager.Repository.Models.Users> GetUsers()
+        public ActionResult<List<UserManager.Repository.Models.Users>> GetUsers(int pageNumber = 1, int pageSize = 5)
         {
-            userService.GetUsers();
-            return userService.GetUsers();
-
+            var users = userService.GetUsers(pageNumber, pageSize);
+            return Ok(users);  
         }
+
         [HttpGet]
         [Route("GetUser")]
         public UserManager.Repository.Models.Users GetUser(int id)

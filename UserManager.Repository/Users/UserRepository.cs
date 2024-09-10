@@ -29,9 +29,12 @@ namespace UserManager.Repository.Users
              userContext.SaveChanges();
 
         }
-        public List<UserManager.Repository.Models.Users> GetUsers()
+        public List<UserManager.Repository.Models.Users> GetUsers(int pageNumber, int pageSize)
         {
-            return userContext.Users.ToList();
+            return userContext.Users
+                       .Skip((pageNumber - 1) * pageSize)  
+                       .Take(pageSize)                     
+                       .ToList();
         }
 
         public UserManager.Repository.Models.Users? GetUser(int id)
