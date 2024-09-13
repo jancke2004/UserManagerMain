@@ -29,8 +29,8 @@ namespace UserManager.Controllers
         [Route("GetUser")]
         public UserManager.Repository.Models.Users GetUser(int id)
         {
-            userService.GetUser(id);
-            return userService.GetUser(id);
+            var user = userService.GetUser(id);
+            return user;
         }
 
         [HttpPost]
