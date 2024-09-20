@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UserManager.Logic.DTOs.Users;
 using UserManager.Logic.Interfaces;
 using UserManager.Repository.Models;
 using UserManager.Repository.Users;
+using AutoMapper;
+using UserManager.Logic.DTOs.Users;
+using UserManager.Repository.Models;
 
 
 namespace UserManager.Controllers
@@ -12,9 +16,12 @@ namespace UserManager.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService userService;
-        public UsersController(IUserService userService)
+        private readonly IMapper _mapper;
+        public UsersController(IUserService userService, IMapper mapper)
+
         {
             this.userService = userService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -35,10 +42,30 @@ namespace UserManager.Controllers
 
         [HttpPost]
         [Route("AddUser")]
-        public string AddUser(UserManager.Repository.Models.Users users)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)] 
+        public IActionResult AddUser(AddUser userDto)
         {
-            userService.AddUser(users);
-            return "User added Successfully";
+             try
+            {
+                if (userDto == null)
+                {
+                    return BadRequest("User data is null.");
+                }
+
+                // Use AutoMapper to map AddUser DTO to Users entity
+                var dbUser = _mapper.Map<Users>(userDto);
+
+                // Call the service to add the user
+                userService.AddUser(dbUser);
+
+                return Ok("User added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
 
         }
         [HttpPut]

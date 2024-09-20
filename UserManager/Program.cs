@@ -5,6 +5,9 @@ using UserManager.Logic.Users;
 using UserManager.Repository.Interfaces;
 using UserManager.Repository.Models;
 using UserManager.Repository.Users;
+using FluentValidation.AspNetCore;
+using AutoMapper;
+using UserManager.Repository.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<UserContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(UserProfile));
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -36,6 +42,7 @@ builder.Services.AddCors(options =>
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials());
+
 });
 
 var app = builder.Build();

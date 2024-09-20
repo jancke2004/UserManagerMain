@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UserManager.Repository.Interfaces;
 using UserManager.Repository.Models;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace UserManager.Repository.Users
@@ -20,13 +21,26 @@ namespace UserManager.Repository.Users
             this.userContext = userContext;
         }
 
-        public void AddUser(UserManager.Repository.Models.Users users)
+        public string AddUser(UserManager.Repository.Models.Users users)
         {
+             // Manual validation before saving to the database
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(users);
+            bool isValid = Validator.TryValidateObject(users, validationContext, validationResults, true);
+
+            if (!isValid)
+            {
+                // Return or throw validation error messages
+                var errorMessages = string.Join("; ", validationResults.Select(result => result.ErrorMessage));
+                return $"User data is invalid: {errorMessages}";
+            }
+
+            // Proceed with adding the user if validation passes
             users.Date_Created = DateTime.Now;
-            //users.Added_By = currentUser;
-            string response = string.Empty;
-             userContext.Users.Add(users);
-             userContext.SaveChanges();
+            userContext.Users.Add(users);
+            userContext.SaveChanges();
+
+            return "User added successfully";
 
         }
         public List<UserManager.Repository.Models.Users> GetUsers(int pageNumber, int pageSize)
